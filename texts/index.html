@@ -2,83 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>文学阁</title>
+  <link rel="icon" type="image/png" href="../images/favicon.png">
   <link rel="stylesheet" href="../css/styles.css">
-  <link rel="icon" type="image/svg+xml" href="../images/book-solid.svg">
-  
-    <style>
-    
-  </style>
+
 </head>
 <body>
-  <header>
-    <h1>课文</h1>
-    <nav>
-      <a href="../index.html">🏯</a> |
-      <a href="index.html">📖</a>
-    </nav>
-  </header>
-  <input type="text" id="searchBox" placeholder="Search texts or tags...">
+  <div id="header"></div>
   
-  <div id="tooltip"></div>
-  <div id="results"></div>
+  <main>
+    <input type="text" id="searchBox" placeholder="Search texts (e.g., 'poem Tang')...">
+    <div id="results">
+      <!-- Text entries will be injected here -->
+    </div>
+  </main>
 
-  <footer>
-    <p>&copy; 2025 文学阁</p>
-  </footer>
+  <div id="footer"></div>
 
-  <script>
-    const searchBox = document.getElementById("searchBox");
-    const resultsDiv = document.getElementById("results");
-    let texts = [];
-    
-
-    fetch('./index.json')
-      .then(response => response.json())
-      .then(data => {
-        texts = data;
-        displayResults(texts);
-      })
-
-    function displayResults(data) {
-      resultsDiv.innerHTML = data.map(text => `
-        <div class="text-entry">
-          <h3><a href="${text.url}">${text.title}, ${text.author}<a/></h3>
-          <div class="tags">Tags: ${text.tags.join(', ')}</div>
-        </div>
-      `).join("");
-      attachHoverEvents();
-    }
-
-    function attachHoverEvents() {
-      document.querySelectorAll(".info-word").forEach((el) => {
-        el.addEventListener("mouseenter", (e) => {
-          const tooltip = document.getElementById("tooltip");
-          tooltip.textContent = el.dataset.info;
-          tooltip.style.display = "block";
-        });
-        el.addEventListener("mousemove", (e) => {
-          const tooltip = document.getElementById("tooltip");
-          tooltip.style.left = e.pageX + 15 + "px";
-          tooltip.style.top = e.pageY + 15 + "px";
-        });
-        el.addEventListener("mouseleave", () => {
-          document.getElementById("tooltip").style.display = "none";
-        });
-      });
-    }
-
-    searchBox.addEventListener("input", () => {
-      const query = searchBox.value.toLowerCase();
-      const filtered = texts.filter(text =>
-        text.title.toLowerCase().includes(query) ||
-        text.tags.some(tag => tag.toLowerCase().includes(query)) ||
-        text.author.toLowerCase().includes(query)
-      );
-      displayResults(filtered);
-    });
-
-    displayResults(texts);
-  </script>
+  <script src="../js/main.js" defer></script>
 </body>
 </html>
+

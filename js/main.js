@@ -1,44 +1,72 @@
-const searchBox = document.getElementById("searchBox");
-const resultsDiv = document.getElementById("results");
+fetch('/components/header.html')
+  .then(res => res.text())
+  .then(data => document.getElementById('header').innerHTML = data);
+
+fetch('/components/footer.html')
+  .then(res => res.text())
+  .then(data => document.getElementById('footer').innerHTML = data);
+
+let texts = [];
 
 function displayResults(data) {
+  const resultsDiv = document.getElementById("results");
+  if (data.length === 0) {
+    resultsDiv.innerHTML = '<p>No matching texts found.</p>';
+    return;
+  }
   resultsDiv.innerHTML = data.map(text => `
     <div class="text-entry">
-      <h3>${text.title}</h3>
-      <p>${text.content}</p>
+      <h3><a href="${text.url}" title="${text.title}">${text.title}</a></h3>
+      ${ text.author ? `<div class="metadata">${text.author}${text.date ? ' - ' + text.date : ''}</div>` : '' }
+      ${ text.description ? `<p>${text.description}</p>` : '' }
       <div class="tags">Tags: ${text.tags.join(', ')}</div>
     </div>
   `).join("");
-  attachHoverEvents(); // Re-attach hover tooltips
 }
 
-function attachHoverEvents() {
-  document.querySelectorAll(".info-word").forEach((el) => {
-    el.addEventListener("mouseenter", (e) => {
-      const tooltip = document.getElementById("tooltip");
-      tooltip.textContent = el.dataset.info;
-      tooltip.style.display = "block";
-    });
-    el.addEventListener("mousemove", (e) => {
-      const tooltip = document.getElementById("tooltip");
-      tooltip.style.left = e.pageX + 15 + "px";
-      tooltip.style.top = e.pageY + 15 + "px";
-    });
-    el.addEventListener("mouseleave", () => {
-      document.getElementById("tooltip").style.display = "none";
-    });
+fetch('/texts/index.json')
+  .then(response => response.json())
+  .then(data => {
+    texts = data;
+    displayResults(texts);
+  })
+  .catch(error => {
+    console.error('Error fetching texts:', error);
+    document.getElementById("results").innerHTML = '<p>Error loading texts data.</p>';
   });
-}
 
-searchBox.addEventListener("input", () => {
-  const query = searchBox.value.toLowerCase();
-  const filtered = texts.filter(text =>
-    text.content.toLowerCase().includes(query) ||
-    text.tags.some(tag => tag.toLowerCase().includes(query)) ||
-    text.title.toLowerCase().includes(query)
-  );
-  displayResults(filtered);
+document.addEventListener("DOMContentLoaded", () => {
+  const searchBox = document.getElementById("searchBox");
+  if (!searchBox) return;
+
+  searchBox.addEventListener("input", function() {
+    const query = this.value.toLowerCase();
+    const tokens = query.split(/\s+/).filter(token => token);
+    const filtered = texts.filter(text => {
+      return tokens.every(token => 
+        (text.title && text.title.toLowerCase().includes(token)) ||
+        (text.title_pinyin && text.title_pinyin.toLowerCase().includes(token)) ||
+        (text.desc && text.desc.toLowerCase().includes(token)) ||
+        (text.author && text.author.toLowerCase().includes(token)) ||
+        (text.author_pinyin && text.author_pinyin.toLowerCase().includes(token)) ||
+        (text.tags && text.tags.some(tag => tag.toLowerCase().includes(token)))
+      );
+    });
+    displayResults(filtered);
+  });
 });
 
-// Display all by default
-displayResults(texts);
+fetch('/characters.json')
+  .then(response => response.json())
+  .then(data => {
+    document.querySelectorAll('.text-page .character').forEach(charElement => {
+      const char = charElement.getAttribute('data-char');
+      const charInfo = data[char];
+
+      if (charInfo) {
+        charElement.setAttribute('title', `${char} - ${charInfo.pinyin} - ${charInfo.meaning}`);
+      }
+    });
+  })
+  .catch(error => console.error('Error fetching character data:', error));
+

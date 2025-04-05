@@ -1,9 +1,14 @@
 [
 	{
 		"title" : "画",
+		"title_pinyin": "hua",
 		"author": "王维",
+		"date": "",
+		"author_pinyin": "Wang Wei",
 		"tags": ["poem", "Tang"],
 		"url": "./text_pages/hua_wangwei.html",
+		"desc": "",
+		"comments": [],
 		"id": 1
 	}
 
