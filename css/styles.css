@@ -1,0 +1,157 @@
+@font-face {
+  font-family: 'FZKai-Z03S';
+  src: url('../fonts/FZKai-Z03S-Regular.ttf') format('truetype');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: black;
+  font-family: 'FZKai-Z03S', 'Linux Libertine';
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background: #ffffff;
+  padding: 1rem;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #ffffff;
+}
+
+nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #333;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  flex: 1;
+}
+
+
+ul {
+  list-style-type: none;
+}
+
+
+article {
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+}
+
+.content {
+  flex: 3;
+  padding-right: 1rem;
+}
+
+.text-container {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.text-content {
+  flex: 2;
+}
+
+.word-info {
+  flex: 1;
+  border-left: 1px solid #ccc;
+  padding-left: 1rem;
+}
+
+.word-card {
+  background: #f5f5f5;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.word {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.pinyin {
+  color: #666;
+  font-style: italic;
+}
+
+.meaning {
+  margin: 0.5rem 0;
+}
+
+.character {
+  display: inline-block;
+  margin-right: 0.5rem;
+  text-align: center;
+}
+
+.character .char {
+  display: block;
+  font-size: 1em;
+}
+
+.character .pinyin {
+  font-size: 0.8em;
+}
+
+.character .meaning {
+  font-size: 0.7em;
+}
+
+.info-word {
+      color: blue;
+      text-decoration: underline dotted;
+      cursor: help;
+    }
+
+.text-entry {
+margin-bottom: 20px;
+}
+
+.tags {
+font-size: 0.9em;
+color: gray;
+}
+
+#tooltip {
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+border: 1px solid #aaa;
+padding: 5px 10px;
+border-radius: 4px;
+box-shadow: 0 0 5px rgba(0,0,0,0.2);
+max-width: 200px;
+font-size: 14px;
+z-index: 1000;
+}
+
+#searchBox {
+width: 300px;
+padding: 8px;
+font-size: 16px;
+margin-bottom: 20px;
+}
+
+

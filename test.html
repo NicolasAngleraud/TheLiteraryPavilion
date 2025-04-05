@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chinese Texts Study Tool</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+    }
+
+    .info-word {
+      color: blue;
+      text-decoration: underline dotted;
+      cursor: help;
+    }
+
+    #tooltip {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      border: 1px solid #aaa;
+      padding: 5px 10px;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      max-width: 200px;
+      font-size: 14px;
+      z-index: 1000;
+    }
+
+    #searchBox {
+      width: 300px;
+      padding: 8px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .text-entry {
+      margin-bottom: 20px;
+    }
+
+    .tags {
+      font-size: 0.9em;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Chinese Texts Study Tool</h1>
+
+  <input type="text" id="searchBox" placeholder="Search texts or tags...">
+  <div id="results"></div>
+
+  <div id="tooltip"></div>
+
+  <script>
+    const searchBox = document.getElementById("searchBox");
+    const resultsDiv = document.getElementById("results");
+    let texts = []; // Will hold loaded JSON
+    
+    // Fetch the JSON data
+    fetch('./Documents/wiki/texts/index.json')
+      .then(response => response.json())
+      .then(data => {
+        texts = data;
+        displayResults(texts);
+      })
+
+    function displayResults(data) {
+      resultsDiv.innerHTML = data.map(text => `
+        <div class="text-entry">
+          <h3>${text.title}</h3>
+          <p>${text.content}</p>
+          <div class="tags">Tags: ${text.tags.join(', ')}</div>
+        </div>
+      `).join("");
+      attachHoverEvents(); // Re-attach hover tooltips
+    }
+
+    function attachHoverEvents() {
+      document.querySelectorAll(".info-word").forEach((el) => {
+        el.addEventListener("mouseenter", (e) => {
+          const tooltip = document.getElementById("tooltip");
+          tooltip.textContent = el.dataset.info;
+          tooltip.style.display = "block";
+        });
+        el.addEventListener("mousemove", (e) => {
+          const tooltip = document.getElementById("tooltip");
+          tooltip.style.left = e.pageX + 15 + "px";
+          tooltip.style.top = e.pageY + 15 + "px";
+        });
+        el.addEventListener("mouseleave", () => {
+          document.getElementById("tooltip").style.display = "none";
+        });
+      });
+    }
+
+    searchBox.addEventListener("input", () => {
+      const query = searchBox.value.toLowerCase();
+      const filtered = texts.filter(text =>
+        text.content.toLowerCase().includes(query) ||
+        text.tags.some(tag => tag.toLowerCase().includes(query)) ||
+        text.title.toLowerCase().includes(query)
+      );
+      displayResults(filtered);
+    });
+
+    // Display all by default
+    displayResults(texts);
+  </script>
+</body>
+</html>
+
