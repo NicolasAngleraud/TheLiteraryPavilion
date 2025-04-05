@@ -56,17 +56,60 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-fetch('/characters.json')
-  .then(response => response.json())
-  .then(data => {
-    document.querySelectorAll('.text-page .character').forEach(charElement => {
-      const char = charElement.getAttribute('data-char');
-      const charInfo = data[char];
+const tooltip = document.getElementById('char-tooltip');
 
-      if (charInfo) {
-        charElement.setAttribute('title', `${char} - ${charInfo.pinyin} - ${charInfo.meaning}`);
-      }
+fetch('/characters.json')
+  .then(res => res.json())
+  .then(data => {
+    document.querySelectorAll('.text-page .character').forEach(el => {
+      const char = el.dataset.char;
+      const info = data[char];
+      
+      if (!info) return;
+
+      el.addEventListener('mouseenter', (e) => {
+        tooltip.textContent = `${char} - ${info.pinyin} - ${info.meaning}`;
+        tooltip.style.display = 'block';
+      });
+
+      el.addEventListener('mousemove', (e) => {
+          const tooltipWidth = tooltip.offsetWidth;
+          const tooltipHeight = tooltip.offsetHeight;
+          const pageWidth = window.innerWidth;
+          const pageHeight = window.innerHeight;
+
+          let left = e.clientX + 15;
+          let top = e.clientY + 15;
+
+          if (left + tooltipWidth > pageWidth) {
+            left = e.clientX - tooltipWidth - 15;
+          }
+
+          if (top + tooltipHeight > pageHeight) {
+            top = e.clientY - tooltipHeight - 15;
+          }
+
+          tooltip.style.left = `${left}px`;
+          tooltip.style.top = `${top}px`;
+        });
+
+      el.addEventListener('mouseleave', () => {
+        tooltip.style.display = 'none';
+      });
     });
   })
-  .catch(error => console.error('Error fetching character data:', error));
+  .catch(err => {
+    console.error('Could not load character data:', err);
+  });
+
+  document.getElementById("randomBtn").addEventListener("click", () => {
+    if (texts.length === 0) return;
+  
+    document.getElementById("searchBox").value = "";
+  
+    const validTexts = texts.filter(text => text.id !== undefined);
+    const randomText = validTexts[Math.floor(Math.random() * validTexts.length)];
+  
+    displayResults([randomText]);
+  });
 

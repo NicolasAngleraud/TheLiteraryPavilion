@@ -1,14 +1,83 @@
 {
-    "爱": {
-        "pinyin": "ài",
-        "meaning": "love"
+    "远": {
+        "pinyin": "yuǎn; yuàn",
+        "meaning": "far distant; to distance oneself from "
         },
-    "好": {
-        "pinyin": "hǎo, hào",
-        "meaning": "good, well, to like"
+    "看": {
+        "pinyin": "kàn; kān",
+        "meaning": "to see, to look; to look after, to watch"
         },
-    "学": {
-        "pinyin": "xué",
-        "meaning": "study, learn"
+    "山": {
+        "pinyin": "shān",
+        "meaning": "mountain, hill, peak"
+        },
+    "有": {
+        "pinyin": "yǒu",
+        "meaning": "to have"
+        },
+    "色": {
+        "pinyin": "sè",
+        "meaning": "color"
+        },
+    "近": {
+        "pinyin": "jìn",
+        "meaning": "near, close"
+        },
+    "听": {
+        "pinyin": "tīng",
+        "meaning": "to hear, to listen"
+        },
+    "水": {
+        "pinyin": "shuǐ",
+        "meaning": "water"
+        },
+    "无": {
+        "pinyin": "wú",
+        "meaning": "negative, no, not"
+        },
+    "声": {
+        "pinyin": "shēng",
+        "meaning": "voice, sound"
+        },
+    "春": {
+        "pinyin": "yuǎn; yuàn",
+        "meaning": "far distant; to distance oneself from "
+        },
+    "去": {
+        "pinyin": "chūn",
+        "meaning": "spring"
+        },
+    "花": {
+        "pinyin": "huā",
+        "meaning": "flower; blossoms; to spend (money, time)"
+        },
+    "还": {
+        "pinyin": "hái; huán",
+        "meaning": "still; return"
+        },
+    "在": {
+        "pinyin": "zài",
+        "meaning": "be at, in, on; consist in, rest; (located) at; (to be) in; to exist; in the middle of doing sth;"
+        },
+    "人": {
+        "pinyin": "rén",
+        "meaning": "people; mankind; someone else; person"
+        },
+    "来": {
+        "pinyin": "lái",
+        "meaning": "to come"
+        },
+    "鸟": {
+        "pinyin": "niǎo",
+        "meaning": "bird"
+        },
+    "不": {
+        "pinyin": "bù",
+        "meaning": "negative, no, not"
+        },
+    "惊": {
+        "pinyin": "jīng",
+        "meaning": "frighten, surprise, startle; to startle; to be frightened; to be scared; alarm"
         }
     }
+    
