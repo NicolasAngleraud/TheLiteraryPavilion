@@ -1,7 +1,7 @@
-//const isLocalDev = ["localhost", "127.0.0.1"].includes(window.location.hostname) ||
-//                   window.location.protocol === "file:";
+const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname) ||
+                   window.location.protocol === "file:";
 //const REPO_NAME = "TheLiteraryPavilion";
-const basePath = isLocalDev ? "/" : `/${REPO_NAME}/`;
+const basePath = isLocal ? "/" : `/${REPO_NAME}/`;
 
 let texts = [];
 
