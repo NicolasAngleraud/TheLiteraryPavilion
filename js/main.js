@@ -1,12 +1,17 @@
-fetch('/components/header.html')
-  .then(res => res.text())
-  .then(data => document.getElementById('header').innerHTML = data);
-
-fetch('/components/footer.html')
-  .then(res => res.text())
-  .then(data => document.getElementById('footer').innerHTML = data);
+//const isLocalDev = ["localhost", "127.0.0.1"].includes(window.location.hostname) ||
+//                   window.location.protocol === "file:";
+//const REPO_NAME = "TheLiteraryPavilion";
+const basePath = isLocalDev ? "/" : `/${REPO_NAME}/`;
 
 let texts = [];
+
+
+function fixTextUrl(url) {
+  const fullUrl = `${basePath}texts/text_pages/${url}`;
+  console.log("Fixing text URL:", fullUrl);
+  return fullUrl;
+}
+
 
 function displayResults(data) {
   const resultsDiv = document.getElementById("results");
@@ -16,7 +21,7 @@ function displayResults(data) {
   }
   resultsDiv.innerHTML = data.map(text => `
     <div class="text-entry">
-      <h3><a href="${text.url}" title="${text.title}">${text.title}</a></h3>
+      <h3><a href="${fixTextUrl(text.url)}" title="${text.title}">${text.title}</a></h3>
       ${ text.author ? `<div class="metadata">${text.author}${text.date ? ' - ' + text.date : ''}</div>` : '' }
       ${ text.description ? `<p>${text.description}</p>` : '' }
       <div class="tags">Tags: ${text.tags.join(', ')}</div>
@@ -24,7 +29,7 @@ function displayResults(data) {
   `).join("");
 }
 
-fetch('/texts/index.json')
+fetch(`${basePath}texts/index.json`)
   .then(response => response.json())
   .then(data => {
     texts = data;
@@ -58,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const tooltip = document.getElementById('char-tooltip');
 
-fetch('/characters.json')
+fetch(`${basePath}characters.json`)
   .then(res => res.json())
   .then(data => {
     document.querySelectorAll('.text-page .character').forEach(el => {
