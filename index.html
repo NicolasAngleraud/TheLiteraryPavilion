@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>文学阁</title>
-  <link rel="icon" type="image/png" href="../images/favicon.png">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" href="./images/favicon.png">
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-<div id="header"></div>
+<div id="header-placeholder"></div>
 
   <main>
   <p style="text-align: center;">
@@ -18,13 +18,18 @@
   </p>
   
   <nav style="font-size: 6rem; margin-top: 1em;">
-    <a href="texts/index.html" class="emoji-link" title="Browse texts">📚</a>
+    <a href="./texts/index.html" class="emoji-link" title="Browse texts">📚</a>
   </nav>
   <p>Text Library</p>
 </main>
 
 <div id="footer"></div>
 
-</body>
 <script src="./js/main.js" defer></script>
+<script src="./js/includes.js"></script>
+  <script>
+    loadComponent("header-placeholder", "./components/header.html");
+  </script>
+</body>
+
 </html>

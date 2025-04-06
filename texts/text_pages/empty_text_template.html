@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>文学阁</title>
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="icon" type="image/svg+xml" href="/images/book-solid.svg">
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="../../images/favicon.png">
 </head>
 <body>
-  <div id="header"></div>
+  <div id="header-placeholder"></div>
   
   <main class="text-page">
     <div class="text-zone">
@@ -30,6 +30,10 @@
   
   <div id="footer"></div>
 
-  <script src="/js/main.js"></script>
+  <script src="../../js/main.js"></script>
+  <script src="../../js/includes.js"></script>
+  <script>
+    loadComponent("header-placeholder", "../../components/header.html");
+  </script>
 </body>
 </html>
