@@ -22,6 +22,30 @@
 		"desc": "",
 		"comments": [],
 		"id": 2
+	},
+	{
+		"title" : "林黛玉 (1)",
+		"title_pinyin": "lindaiyu",
+		"author": "",
+		"date": "",
+		"author_pinyin": "",
+		"tags": ["character", "classic"],
+		"url": "lindaiyu1.html",
+		"desc": "",
+		"comments": [],
+		"id": 3
+	},
+	{
+		"title" : "学习 (1)",
+		"title_pinyin": "xuexi",
+		"author": "",
+		"date": "",
+		"author_pinyin": "",
+		"tags": ["concept"],
+		"url": "xuexi1.html",
+		"desc": "",
+		"comments": [],
+		"id": 4
 	}
 ]
 
