@@ -102,6 +102,42 @@
     "画": {
         "pinyin": "huà",
         "meaning": "painting, picture, drawing; draw; to draw, to paint"
+        },
+    "学": {
+        "pinyin": "xué",
+        "meaning": "learning, knowledge; school; to learn; to study; to imitate; science; -ology"
+        },
+    "习": {
+        "pinyin": "xí",
+        "meaning": "practice; flapping wings; to practice; to study; habit"
+        },
+    "是": {
+        "pinyin": "shì",
+        "meaning": "indeed, yes, right; to be; demonstrative pronoun, this, that; is; are; am; yes"
+        },
+    "获": {
+        "pinyin": "huò; huò",
+        "meaning": "obtain, get, receive, seize, to catch, to obtain, to capture ; harvest, cut grain, to reap, to harvest"
+        },
+    "得": {
+        "pinyin": "dé; de; děi",
+        "meaning": "to obtain, to get; structural particle; to have to, must, ought to, to need to"
+        },
+    "新": {
+        "pinyin": "xīn",
+        "meaning": "new, recent, fresh, modern"
+        },
+    "的": {
+        "pinyin": "de; dī; dí; dì",
+        "meaning": "possessive, adjectival suffix; see 的士[dī​shì]; really and truly; aim, clear"
+        },
+    "理": {
+        "pinyin": "lǐ",
+        "meaning": "reason, logic"
+        },
+    "解": {
+        "pinyin": "jiě",
+        "meaning": "to explain, to understand, to know, to untie, to loosen, to open"
         }
     }
     
